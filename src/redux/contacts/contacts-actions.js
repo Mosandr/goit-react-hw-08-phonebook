@@ -12,4 +12,11 @@ export const deleteRequest = createAction("contacts/deleteRequest");
 export const deleteSuccess = createAction("contacts/deleteSuccess");
 export const deleteError = createAction("contacts/deleteError");
 
+export const editRequest = createAction("contacts/editRequest");
+export const editSuccess = createAction("contacts/editSuccess");
+export const editError = createAction("contacts/editError");
+
+export const onEdit = createAction("contacts/onEdit");
+export const onEditCancel = createAction("contacts/onEditCancel");
+
 export const filterChange = createAction("contacts/Filter");

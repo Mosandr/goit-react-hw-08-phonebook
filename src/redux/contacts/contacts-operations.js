@@ -8,10 +8,14 @@ import {
   fetchRequest,
   fetchSuccess,
   fetchError,
+  editRequest,
+  editSuccess,
+  editError,
 } from "../contacts/contacts-actions";
 
+import { getIsEdit } from "./contacts-selectors";
+
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:4040";
 
 const fetchContacts = () => (dispatch) => {
   dispatch(fetchRequest());
@@ -19,7 +23,7 @@ const fetchContacts = () => (dispatch) => {
   axios
     .get("/contacts")
     .then(({ data }) => dispatch(fetchSuccess(data)))
-    .catch((error) => dispatch(fetchError(error)));
+    .catch((error) => dispatch(fetchError(error.message)));
 };
 
 const addContact = (contact) => async (dispatch) => {
@@ -31,7 +35,7 @@ const addContact = (contact) => async (dispatch) => {
       dispatch(addSuccess(data));
     })
     .catch((error) => {
-      dispatch(addError(error));
+      dispatch(addError(error.message));
     });
 };
 
@@ -42,8 +46,21 @@ const deleteContact = (id) => async (dispatch) => {
     await axios.delete(`/contacts/${id}`);
     dispatch(deleteSuccess(id));
   } catch (error) {
-    dispatch(deleteError(error));
+    dispatch(deleteError(error.message));
   }
 };
 
-export default { fetchContacts, addContact, deleteContact };
+const editContact = (contact) => async (dispatch, getState) => {
+  dispatch(editRequest());
+
+  const id = getIsEdit(getState());
+
+  try {
+    const { data } = await axios.patch(`/contacts/${id}`, contact);
+    dispatch(editSuccess(data));
+  } catch (error) {
+    dispatch(editError(error.message));
+  }
+};
+
+export default { fetchContacts, addContact, deleteContact, editContact };

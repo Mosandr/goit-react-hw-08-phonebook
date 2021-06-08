@@ -8,6 +8,19 @@ body {
   color: teal;
 }
 
+body::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 40%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  background: url("../src/images/phonebook.svg");
+  background-repeat: no-repeat, no-repeat;
+  transform: rotate(25deg);
+}
+
 ul {
   margin: 0;
   padding: 0;

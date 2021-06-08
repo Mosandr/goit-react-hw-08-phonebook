@@ -11,6 +11,11 @@ import {
   fetchSuccess,
   fetchRequest,
   fetchError,
+  editError,
+  editSuccess,
+  editRequest,
+  onEdit,
+  onEditCancel,
 } from "../contacts/contacts-actions";
 
 const items = createReducer([], {
@@ -18,6 +23,13 @@ const items = createReducer([], {
   [addSuccess]: (state, { payload }) => {
     return [payload, ...state];
   },
+  [editSuccess]: (state, { payload }) =>
+    state.map((item) => {
+      if (item.id === payload.id) {
+        return payload;
+      }
+      return item;
+    }),
   [deleteSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
@@ -32,18 +44,28 @@ const loading = createReducer(false, {
   [fetchRequest]: () => true,
   [fetchSuccess]: () => false,
   [fetchError]: () => false,
+  [editRequest]: () => true,
+  [editSuccess]: () => false,
+  [editError]: () => false,
 });
 
 const error = createReducer("", {
-  [addError]: () => "Opps! Something gone wrong. Try again",
-  [deleteError]: () => "Opps! Something gone wrong. Try again",
-  [fetchError]: () => "Opps! Something gone wrong. Reload page",
+  [addError]: (_, { payload }) => payload,
+  [deleteError]: (_, { payload }) => payload,
+  [fetchError]: (_, { payload }) => payload,
+  [editError]: (_, { payload }) => payload,
   [addSuccess]: () => "",
   [deleteSuccess]: () => "",
   [fetchSuccess]: () => "",
   [addRequest]: () => "",
   [deleteRequest]: () => "",
   [fetchRequest]: () => "",
+});
+
+const isEdit = createReducer("", {
+  [onEdit]: (_, { payload }) => payload,
+  [onEditCancel]: () => "",
+  [editSuccess]: () => "",
 });
 
 const filterReducer = createReducer("", {
@@ -53,6 +75,7 @@ const filterReducer = createReducer("", {
 export default combineReducers({
   items,
   filter: filterReducer,
+  isEdit,
   loading,
   error,
 });

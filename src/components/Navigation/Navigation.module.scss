@@ -1,0 +1,17 @@
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.navLink {
+  text-decoration: none;
+  color: teal;
+}
+
+.navItem:not(:first-child) {
+  margin-left: 15px;
+}
+
+.activeLink {
+  text-decoration: underline;
+}
