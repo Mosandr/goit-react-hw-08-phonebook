@@ -6,6 +6,7 @@ import shortId from "shortid";
 
 import Container from "../../components/Container";
 import styles from "./LoginPage.module.scss";
+import { Button } from "react-bootstrap";
 
 import authOperations from "../../redux/auth/auth-operations";
 
@@ -33,8 +34,8 @@ class LoginPage extends Component {
   };
 
   render() {
-    const { name, email, password } = this.state;
-    const idForName = shortId.generate();
+    const { email, password } = this.state;
+
     const idForEmail = shortId.generate();
     const idForPassword = shortId.generate();
 
@@ -65,10 +66,9 @@ class LoginPage extends Component {
             title="Пароль должен быть не менее 8 символов"
             required
           />
-
-          <button className="button" type="submit">
-            Login
-          </button>
+          <Button variant="success" type="submit">
+            LogIn
+          </Button>
         </form>
       </Container>
     );

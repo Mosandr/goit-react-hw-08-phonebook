@@ -1,6 +1,7 @@
 .ContactForm {
   display: flex;
   flex-direction: column;
+  padding-bottom: 15px;
 
   & > button {
     align-self: start;

@@ -7,22 +7,15 @@ import {
   getFilteredItems,
   getIsEdit,
 } from "../../redux/contacts/contacts-selectors";
+
 import PropTypes from "prop-types";
 import styles from "./ContactList.module.scss";
-import classNames from "classnames";
+import { Button } from "react-bootstrap";
 
 class ContactList extends Component {
   componentDidMount() {
     this.props.fetchContacts();
   }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (this.props.isEdit !== nextProps.isEdit) return true;
-  // }
-
-  // componentDidUpdate() {
-  //   this.props.fetchContacts();
-  // }
 
   render() {
     const { contacts, onDelete, onEditClick } = this.props;
@@ -37,20 +30,17 @@ class ContactList extends Component {
                 <span> {number}</span>
               </p>
               <div>
-                <button
-                  className={classNames("button", styles.editButton)}
+                <Button
+                  variant="success"
+                  className={styles.editButton}
                   onClick={() => onEditClick(id)}
-                  type="button"
                 >
                   Edit
-                </button>
-                <button
-                  className="button"
-                  onClick={() => onDelete(id)}
-                  type="button"
-                >
+                </Button>
+
+                <Button variant="danger" onClick={() => onDelete(id)}>
                   Delete
-                </button>
+                </Button>
               </div>
             </li>
           );

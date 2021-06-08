@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import operations from "../../redux/contacts/contacts-operations";
 import { getEditItem, getItems } from "../../redux/contacts/contacts-selectors";
 import shortId from "shortid";
-import PropTypes from "prop-types";
 import styles from "./ContactEditForm.module.scss";
+import { Button } from "react-bootstrap";
 
 class ContactEditForm extends Component {
   state = {
@@ -70,9 +70,9 @@ class ContactEditForm extends Component {
           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           required
         />
-        <button className="button" type="submit">
+        <Button variant="success" type="submit">
           Edit contact
-        </button>
+        </Button>
       </form>
     );
   }

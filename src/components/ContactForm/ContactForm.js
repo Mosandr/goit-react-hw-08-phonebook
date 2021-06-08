@@ -5,6 +5,7 @@ import { getItems } from "../../redux/contacts/contacts-selectors";
 import shortId from "shortid";
 import PropTypes from "prop-types";
 import styles from "./ContactForm.module.scss";
+import { Button } from "react-bootstrap";
 
 class ContactForm extends Component {
   state = {
@@ -78,9 +79,9 @@ class ContactForm extends Component {
           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           required
         />
-        <button className="button" type="submit">
+        <Button variant="success" type="submit">
           Add contact
-        </button>
+        </Button>
       </form>
     );
   }

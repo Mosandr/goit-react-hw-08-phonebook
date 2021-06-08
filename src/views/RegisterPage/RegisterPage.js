@@ -7,6 +7,7 @@ import authOperations from "../../redux/auth/auth-operations";
 
 import Container from "../../components/Container";
 import styles from "./RegisterPage.module.scss";
+import { Button } from "react-bootstrap";
 
 class RegisterPage extends Component {
   state = {
@@ -79,9 +80,9 @@ class RegisterPage extends Component {
             title="Пароль должен быть не менее 8 символов"
             required
           />
-          <button className="button" type="submit">
+          <Button variant="success" type="submit">
             Register
-          </button>
+          </Button>
         </form>
       </Container>
     );

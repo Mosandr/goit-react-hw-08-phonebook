@@ -1,25 +1,21 @@
 import { connect } from "react-redux";
 import authOperations from "../../redux/auth/auth-operations";
 import { getUserEmail } from "../../redux/auth/auth-selectors";
-import classNames from "classnames";
+import { Button } from "react-bootstrap";
 import styles from "./UserMenu.module.scss";
 
-const UserMenu = ({ userName, onLogOut }) => {
+const UserMenu = ({ email, onLogOut }) => {
   return (
     <div>
-      <span className={styles.email}>{userName}!</span>
-      <button
-        onClick={onLogOut}
-        className={classNames("button", styles.logOutBtn)}
-        type="button"
-      >
+      <span className={styles.email}>{email}</span>
+      <Button variant="warning" onClick={onLogOut}>
         LogOut
-      </button>
+      </Button>
     </div>
   );
 };
 const mapStateToProps = (state) => ({
-  userName: getUserEmail(state),
+  email: getUserEmail(state),
 });
 
 const mapDispatchToProps = {

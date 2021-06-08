@@ -3,9 +3,8 @@
   align-items: center;
 }
 
-.navLink {
-  text-decoration: none;
-  color: teal;
+.navItem {
+  margin-bottom: 0;
 }
 
 .navItem:not(:first-child) {
